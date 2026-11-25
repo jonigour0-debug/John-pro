@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hasi Ghar - AI Joke Maker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <h1>Hasi Ghar</h1>
+      <p class="tag">Topic batao, joke hum banayenge.</p>
+    </header>
+
+    <section class="maker" aria-labelledby="maker-title">
+      <h2 id="maker-title" class="sr-only">Joke banao</h2>
+
+      <label class="field-label" for="topic">Kis topic pe joke chahiye?</label>
+      <input id="topic" class="topic" type="text" maxlength="60" placeholder="chai, exam, WiFi, shaadi..." autocomplete="off">
+
+      <fieldset class="group">
+        <legend>Bhasha</legend>
+        <div class="seg" id="language">
+          <label><input type="radio" name="language" value="hinglish" checked><span>Hinglish</span></label>
+          <label><input type="radio" name="language" value="hindi"><span>हिन्दी</span></label>
+          <label><input type="radio" name="language" value="english"><span>English</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Style</legend>
+        <div class="seg" id="style">
+          <label><input type="radio" name="style" value="funny" checked><span>Mazedaar</span></label>
+          <label><input type="radio" name="style" value="desi"><span>Desi</span></label>
+          <label><input type="radio" name="style" value="pun"><span>Pun</span></label>
+          <label><input type="radio" name="style" value="oneliner"><span>One-liner</span></label>
+          <label><input type="radio" name="style" value="dad"><span>Dad joke</span></label>
+        </div>
+      </fieldset>
+
+      <button id="go" class="go" type="button">Joke banao</button>
+      {% if not ai_on %}
+      <p class="hint">AI key set nahi hai, isliye abhi ready-made jokes dikhenge.</p>
+      {% endif %}
+    </section>
+
+    <section id="results" class="results" aria-live="polite"></section>
+
+    <section class="saved-wrap">
+      <h2>Pasandida jokes</h2>
+      <div id="saved" class="saved"></div>
+      <p id="saved-empty" class="empty">Kisi joke pe Save dabao, wo yahan jama ho jayega.</p>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
