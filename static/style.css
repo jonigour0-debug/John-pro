@@ -1,0 +1,126 @@
+:root {
+  --ink: #1c1b4b;
+  --ink-2: #2a2870;
+  --marigold: #ffc83d;
+  --pink: #ff4f7b;
+  --paper: #fff9ec;
+  --muted: #b9b7e6;
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+html { color-scheme: dark; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.top h1 {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.4rem, 14vw, 6.5rem);
+  line-height: .95;
+  margin: 0;
+  color: var(--marigold);
+  letter-spacing: -.02em;
+  text-shadow: 5px 5px 0 var(--pink);
+}
+.tag { margin: 18px 0 36px; color: var(--muted); font-size: 1.15rem; }
+
+.maker { display: grid; gap: 18px; }
+.field-label { font-family: "Baloo 2", sans-serif; font-weight: 700; font-size: 1.3rem; }
+.topic {
+  width: 100%;
+  padding: 16px 18px;
+  font: inherit;
+  font-size: 1.2rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--paper);
+  border-radius: var(--radius);
+}
+.topic::placeholder { color: #8b89b8; }
+.topic:focus-visible, .go:focus-visible, .act:focus-visible, .seg input:focus-visible + span {
+  outline: 3px solid var(--pink);
+  outline-offset: 3px;
+}
+
+.group { border: 0; padding: 0; margin: 0; }
+.group legend { color: var(--muted); margin-bottom: 8px; padding: 0; }
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg input { position: absolute; opacity: 0; }
+.seg span {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 2px solid var(--ink-2);
+  background: var(--ink-2);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.seg input:checked + span { background: var(--marigold); border-color: var(--marigold); color: var(--ink); font-weight: 700; }
+
+.go {
+  justify-self: start;
+  margin-top: 6px;
+  padding: 14px 34px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--paper);
+  background: var(--pink);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 5px 0 #b72f55;
+  cursor: pointer;
+  transition: transform .1s, box-shadow .1s;
+}
+.go:active { transform: translateY(4px); box-shadow: 0 1px 0 #b72f55; }
+.go:disabled { opacity: .7; cursor: wait; }
+.hint { margin: 0; color: var(--muted); font-size: .95rem; }
+
+.results { margin-top: 44px; }
+.joke { padding: 24px 0; border-top: 2px dashed var(--ink-2); }
+.joke:first-child { border-top: 0; }
+.joke p {
+  margin: 0 0 14px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 4.5vw, 1.75rem);
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+.acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.act {
+  padding: 7px 14px;
+  font: inherit;
+  font-size: .95rem;
+  color: var(--paper);
+  background: transparent;
+  border: 2px solid var(--muted);
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.act:hover { background: var(--ink-2); }
+.act.on { background: var(--marigold); border-color: var(--marigold); color: var(--ink); }
+.notice, .error { padding: 12px 16px; border-radius: 12px; margin-bottom: 8px; }
+.notice { background: var(--ink-2); color: var(--muted); }
+.error { background: #5a1633; color: #ffd3de; }
+.loading { color: var(--marigold); font-family: "Baloo 2", sans-serif; font-size: 1.4rem; }
+.loading::after { content: ""; animation: dots 1.2s steps(4) infinite; }
+@keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+
+.saved-wrap { margin-top: 64px; }
+.saved-wrap h2 { font-family: "Baloo 2", sans-serif; font-size: 1.6rem; margin: 0 0 8px; color: var(--marigold); }
+.empty { color: var(--muted); margin: 0; }
+.saved .joke p { font-size: 1.15rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
